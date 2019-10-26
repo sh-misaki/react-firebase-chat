@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import styles from './index.module.scss';
 
 type Props = {
 
@@ -7,8 +8,8 @@ type Props = {
 class Chat extends Component<Props> {
   render() {
     return (
-      <div>
-        <div>
+      <div className={styles.main}>
+        <div className={styles.error}>
           sideBar
         </div>
         <div>
