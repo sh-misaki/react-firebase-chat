@@ -1,7 +1,25 @@
+$side-bar-width: 200px;
+
 .main {
   display: flex;
 }
 
-.error {
-  background-color: red;
+.sideMenu {
+  height: 100vh;
+  width: $side-bar-width;
+  padding: 24px 16px;
+  background-color: #dfdffa;
+}
+
+.sideMenuItem {
+  display: flex;
+}
+
+.sideMenuItemText {
+  margin-left: 12px;
+}
+
+.container {
+  width: calc(100vw - $side-bar-width);
+  height: 100vh;
 }
