@@ -8,8 +8,12 @@ class Chat extends Component<Props> {
   render() {
     return (
       <div>
-        main layout
-        { this.props.children }
+        <div>
+          sideBar
+        </div>
+        <div>
+          { this.props.children }
+        </div>
       </div>
     )
   }
