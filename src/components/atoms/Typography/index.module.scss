@@ -1,3 +1,9 @@
 .typography {
-  font-size: 12px;
+  &--h1 {
+    font-size: 48px;
+  }
+
+  &--body1 {
+    font-size: 16px;
+  }
 }

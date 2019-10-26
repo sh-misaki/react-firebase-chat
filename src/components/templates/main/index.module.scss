@@ -25,6 +25,7 @@ $side-bar-width: 200px;
 
     &Item {
       display: flex;
+      margin-top: 16px;
   
       &Text {
         margin-left: 12px;
@@ -34,6 +35,8 @@ $side-bar-width: 200px;
 }
 
 .container {
-  width: calc(100vw - $side-bar-width);
+  width: calc(100vw - #{$side-bar-width});
   height: 100vh;
+  background-color: #f6f4fc;
+  padding: 24px 32px;
 }
