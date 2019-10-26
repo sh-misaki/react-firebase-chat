@@ -1,7 +1,42 @@
+$side-bar-width: 200px;
+
 .main {
   display: flex;
 }
 
-.error {
-  background-color: red;
+.sideMenu {
+  height: 100vh;
+  width: $side-bar-width;
+  padding: 24px 16px;
+  background-color: #dfdffa;
+
+  &User {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    &Name {
+      margin-top: 8px;
+    }
+  }
+
+  &List {
+    margin-top: 32px;
+
+    &Item {
+      display: flex;
+      margin-top: 16px;
+  
+      &Text {
+        margin-left: 12px;
+      }
+    }
+  }
+}
+
+.container {
+  width: calc(100vw - #{$side-bar-width});
+  height: 100vh;
+  background-color: #f6f4fc;
+  padding: 24px 32px;
 }

@@ -1,0 +1,28 @@
+{
+  "menu": [
+    {
+      "text": "PROPERTIES",
+      "icon": "fa-home"
+    },
+    {
+      "text": "CHAT",
+      "icon": "fa-comment"
+    },
+    {
+      "text": "CALENDAR",
+      "icon": "fa-calendar"
+    },
+    {
+      "text": "OFFERS",
+      "icon": "fa-tag"
+    },
+    {
+      "text": "DOCUMENTS",
+      "icon": "fa-file"
+    },
+    {
+      "text": "SETTINGS",
+      "icon": "fa-cog"
+    }
+  ]
+}
