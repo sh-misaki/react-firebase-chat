@@ -1,13 +1,19 @@
-import React from 'react';
+import React, { Component } from 'react';
 import 'App.css';
 import Chat from 'components/pages/chat';
 
-function App() {
-  return (
-    <div>
-      <Chat />
-    </div>
-  );
+type Props = {
+
+}
+
+class App extends Component<Props> {
+  render() {
+    return (
+      <div>
+        <Chat />
+      </div>
+    );
+  }
 }
 
 export default App;
