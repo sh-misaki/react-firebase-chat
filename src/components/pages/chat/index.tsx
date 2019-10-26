@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import MainLayout from '../../templates/main';
+import MainLayout from 'components/templates/main';
 
 type Props = {
 
