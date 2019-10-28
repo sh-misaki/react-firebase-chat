@@ -1,12 +1,15 @@
 import React, { Children, ReactElement, } from 'react';
 import { withFormik, FormikProps, } from 'formik';
-import * as Yup from 'yup';
+import { Schema, setLocale } from 'yup';
+import locale from './locale.json';
 
 interface FormProps {
   initialValues: { [name: string]: string };
   onSubmit(values: any): void;
-  validationSchema: Yup.Schema<{}>
+  validationSchema: Schema<{}>
 }
+
+setLocale(locale);
 
 const Form = withFormik<FormProps, FormProps['initialValues']>({
   mapPropsToValues: (props: FormProps) => props.initialValues,

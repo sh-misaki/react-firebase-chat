@@ -16,10 +16,12 @@ class Login extends Component {
   render() {
     const validationSchema = Yup.object().shape({
       email: Yup.string()
-        .email('Invalid email')
-        .required('Required'),
+        .email()
+        .required()
+        .label("メールアドレス"),
       password: Yup.string()
-        .min(8, '${min}文字以上入力してください'),
+        .min(8)
+        .label("パスワード"),
     })
 
     return (
