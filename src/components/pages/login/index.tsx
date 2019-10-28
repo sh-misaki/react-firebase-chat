@@ -14,13 +14,18 @@ class Login extends Component {
         <Typography variant="h1">
           Login
         </Typography>
-        <Form>
+        <Form
+          initialValues={{
+            email: 'hoge@email.com',
+            password: 'hogehoge',
+          }}
+        >
           <FormControl>
             <Label
-              text="名前"
+              text="メールアドレス"
             >
               <TextField
-                name="name"
+                name="email"
               />
             </Label>
           </FormControl>
