@@ -7,6 +7,8 @@ import {
 
 import Chat from "containers/chat";
 
+import Login from "containers/login";
+
 export default class App extends Component {
   render() {
     return (
@@ -14,6 +16,9 @@ export default class App extends Component {
         <Switch>
           <Route path="/chat">
             <Chat />
+          </Route>
+          <Route path="/login">
+            <Login />
           </Route>
           <Route path="*">
             No Match
