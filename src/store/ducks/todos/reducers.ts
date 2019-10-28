@@ -1,51 +1,33 @@
-import { combineReducers, Reducer } from "redux";
-import CONSTANTS from "./constants";
-import types, { IToDo, IFilter } from "./types";
-export type CombineReducerMap<S extends {}> = { [K in keyof S]: Reducer<S[K]> }
+import { combineReducers } from "redux";
+import { getType } from "typesafe-actions";
+import { PayloadAction } from "typesafe-actions/dist";
 
-interface IState {
-  todos: IToDo[];
-  visibilityFilter: IFilter;
+import actions from "./actions"
+import { VISIBILITY_FILTER } from "./constants"
+import { Todo } from "./models"
+
+const todos = (state: Todo[] = [], action: PayloadAction<string, Todo[]>) => {
+  switch (action.type) {
+    case getType(actions.addTodo):
+    case getType(actions.toggleTodo):
+      return action.payload
+    default:
+      return state
+  }
 }
 
-const todo = (state: IToDo, action: any) => {
+const visibilityFilter = (state: string = VISIBILITY_FILTER.SHOW_ALL, action: PayloadAction<string, string>) => {
   switch (action.type) {
-    case types.ADD_TODO:
-      return {
-        id: action.id,
-        text: action.text,
-        completed: false
-      };
-    case types.TOGGLE_TODO:
-      if (state.id !== action.id) {
-        return state;
-      }
-
-      return {
-        ...state,
-        completed: !state.completed
-      };
+    case getType(actions.setVisibilityFilter):
+      return action.payload
     default:
-      return state;
+      return state
   }
-};
+}
 
-const todos = (state = [], action: { type: any }) => {
-  switch (action.type) {
-    case types.ADD_TODO:
-      return state;
-    case types.TOGGLE_TODO:
-      return state.map(t => todo(t, action));
-    default:
-      return state;
-  }
-};
+const todosReducer = combineReducers({
+  todos,
+  visibilityFilter,
+})
 
-export default (state = CONSTANTS.SHOW_ALL, action: any) => {
-  switch (action.type) {
-    case types.SET_VISIBILITY_FILTER:
-      return action.filter;
-    default:
-      return state;
-  }
-};
+export default todosReducer;

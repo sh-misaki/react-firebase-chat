@@ -1,14 +1,25 @@
-import { connect } from 'react-redux';
+import { connect, MapDispatchToPropsParam } from 'react-redux';
+import { Dispatch } from "redux";
 
 import Chat from 'components/pages/chat';
-import { toggleTodo } from 'store/ducks/todos/actions';
+import { StateAll } from "store/ducks/types";
+import { todosOperations, todosSelectors } from "store/ducks/todos";
 
-const mapStateToProps = (state: any) => ({
-  todos: state.todos
+const mapStateToProps = (state: StateAll) => ({
+  todos: todosSelectors.getVisibleTodos(state),
+  visibilityFilter: todosSelectors.getVisibilityFilter(state),
 })
 
-const mapDispatchToProps = (dispatch: any) => ({
-  toggleTodo: (id: string) => dispatch(toggleTodo(id))
+const mapDispatchToProps = (dispatch: MapDispatchToPropsParam<any, {}>) => ({
+  onTodoClick: (id: number) => {
+    dispatch(todosOperations.toggleTodo(id))
+  },
+  addTodo: (text: string) => {
+    dispatch(todosOperations.addTodo(text))
+  },
+  onFilterClick: (filter: string) => {
+    dispatch(todosOperations.setVisibilityFilter(filter))
+  },
 })
 
 export default connect(

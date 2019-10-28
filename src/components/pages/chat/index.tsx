@@ -9,7 +9,6 @@ type Props = {
 
 class Chat extends Component<Props> {
   render() {
-    console.log(this.props)
     return (
       <MainLayout>
         <Typography variant="h1">
