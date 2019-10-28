@@ -1,0 +1,16 @@
+.label {
+
+  &__text {
+    &--disabled {
+      color: gray;
+    }
+  
+    &--error {
+      color: red;
+    }
+  
+    &--focused {
+      color: green;
+    }
+  }
+}
