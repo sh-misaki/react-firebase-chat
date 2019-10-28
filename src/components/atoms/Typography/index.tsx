@@ -26,7 +26,7 @@ type Props = OwnProps & React.HTMLAttributes<HTMLDivElement>;
 const Typography: FunctionComponent<Props> = ({
   children,
   className,
-  variant,
+  variant = "body1",
 }) => {
   return (
     <div className={classNames(
@@ -38,9 +38,5 @@ const Typography: FunctionComponent<Props> = ({
     </div>
   )
 }
-
-Typography.defaultProps = {
-  variant: 'body1',
-};
 
 export default Typography;

@@ -11,12 +11,12 @@ interface Props {
 }
 
 const Label: React.FunctionComponent<Props> = ({
-  className,
+  className = "",
   children,
-  disabled,
-  error,
-  focused,
-  required,
+  disabled = false,
+  error = false,
+  focused = false,
+  required = false,
   text,
 }) => {
   return (
@@ -36,14 +36,6 @@ const Label: React.FunctionComponent<Props> = ({
       { children }
     </label>
   )
-};
-
-Label.defaultProps = {
-  className: "",
-  disabled: false,
-  error: false,
-  focused: false,
-  required: false,
 };
 
 export default Label;

@@ -9,27 +9,27 @@ interface Props {
   fullWidth?: boolean,
   inputProps?: any,
   name: string,
-  onBlur?: React.ChangeEventHandler,
-  onChange?: React.ChangeEventHandler,
-  onFocus?: React.FocusEventHandler,
+  onBlur?: (e: React.ChangeEvent) => {},
+  onChange?: (e: React.ChangeEvent) => {},
+  onFocus?: (e: React.FocusEvent) => {},
   placeholder?: string,
   required?: boolean,
   type?: 'text' | 'password' | 'number',
 }
 
 const TextField: React.FunctionComponent<Props> = ({
-  autoComplete,
-  className,
-  disabled,
-  fullWidth,
-  inputProps,
-  name,
-  onBlur,
-  onChange,
-  onFocus,
-  placeholder,
-  required,
-  type,
+  autoComplete = "default",
+  className = "",
+  disabled = false,
+  fullWidth = false,
+  inputProps = {},
+  name = "",
+  onBlur = () => {},
+  onChange = () => {},
+  onFocus = () => {},
+  placeholder = "",
+  required = false,
+  type = "text",
 }) => {
   const [field] = useField({ name });
   const {
@@ -40,12 +40,12 @@ const TextField: React.FunctionComponent<Props> = ({
 
   const handleChange: React.ChangeEventHandler<HTMLInputElement> = (e) => {
     onChangeField(e);
-    onChange !== undefined && onChange(e);
+    onChange(e);
   }
 
   const handleBlur: React.ChangeEventHandler<HTMLInputElement> = (e) => {
     onBlurField(e);
-    onBlur !== undefined && onBlur(e);
+    onBlur(e);
   }
 
   return (
@@ -66,21 +66,6 @@ const TextField: React.FunctionComponent<Props> = ({
       {...inputProps}
     />
   )
-};
-
-TextField.defaultProps = {
-  autoComplete: 'default',
-  className: "",
-  disabled: false,
-  fullWidth: false,
-  inputProps: {},
-  name: "",
-  onBlur: () => {},
-  onChange: () => {},
-  onFocus: () => {},
-  placeholder: "",
-  required: false,
-  type: 'text',
 };
 
 export default TextField;
