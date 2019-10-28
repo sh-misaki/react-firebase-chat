@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import * as Yup from 'yup';
 
 import MainLayout from 'components/templates/main';
 import Typography from 'components/atoms/Typography';
@@ -13,6 +14,14 @@ class Login extends Component {
   }
 
   render() {
+    const validationSchema = Yup.object().shape({
+      email: Yup.string()
+        .email('Invalid email')
+        .required('Required'),
+      password: Yup.string()
+        .min(8, '${min}文字以上入力してください'),
+    })
+
     return (
       <MainLayout>
         <Typography variant="h1">
@@ -23,6 +32,7 @@ class Login extends Component {
             email: 'hoge@email.com',
             password: 'hogehoge',
           }}
+          validationSchema={validationSchema}
           onSubmit={this.onSubmit}
         >
           <FormControl name="email">

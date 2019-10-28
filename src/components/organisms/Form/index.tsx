@@ -5,19 +5,12 @@ import * as Yup from 'yup';
 interface FormProps {
   initialValues: { [name: string]: string };
   onSubmit(values: any): void;
+  validationSchema: Yup.Schema<{}>
 }
 
-const validationSchema = Yup.object().shape({
-  email: Yup.string()
-    .email('Invalid email')
-    .required('Required'),
-  password: Yup.string()
-    .min(8, '${min}文字以上入力してください'),
-});
-
 const Form = withFormik<FormProps, FormProps['initialValues']>({
-  mapPropsToValues: ({ initialValues }) => initialValues,
-  validationSchema,
+  mapPropsToValues: (props: FormProps) => props.initialValues,
+  validationSchema: (props: FormProps) => props.validationSchema,
   handleSubmit: (values, { props: { onSubmit } }) => onSubmit(values),
 })((props: FormikProps<FormProps['initialValues']> & React.PropsWithChildren<{}>) => {
   const { children, handleSubmit } = props;
