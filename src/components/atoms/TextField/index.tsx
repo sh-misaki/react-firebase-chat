@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import classNames from 'classnames';
-
+import { useField } from 'formik';
+ 
 interface Props {
   autoComplete?: 'on' | 'off' | 'default',
   className?: string,
@@ -14,7 +15,6 @@ interface Props {
   placeholder?: string,
   required?: boolean,
   type?: 'text' | 'password' | 'number',
-  value?: string,
 }
 
 const TextField: React.FunctionComponent<Props> = ({
@@ -30,8 +30,24 @@ const TextField: React.FunctionComponent<Props> = ({
   placeholder,
   required,
   type,
-  value,
 }) => {
+  const [field] = useField({ name });
+  const {
+    onChange: onChangeField,
+    onBlur: onBlurField,
+    ...restFieldProps
+  } = field;
+
+  const handleChange: React.ChangeEventHandler<HTMLInputElement> = (e) => {
+    onChangeField(e);
+    onChange !== undefined && onChange(e);
+  }
+
+  const handleBlur: React.ChangeEventHandler<HTMLInputElement> = (e) => {
+    onBlurField(e);
+    onBlur !== undefined && onBlur(e);
+  }
+
   return (
     <input
       autoComplete={autoComplete}
@@ -40,14 +56,13 @@ const TextField: React.FunctionComponent<Props> = ({
         'hoge': fullWidth,
       })}
       disabled={disabled}
-      name={name}
-      onBlur={onBlur}
-      onChange={onChange}
+      onBlur={handleBlur}
+      onChange={handleChange}
       onFocus={onFocus}
       placeholder={placeholder}
       required={required}
       type={type}
-      {...(value !== "" ? {value} : {})}
+      {...restFieldProps}
       {...inputProps}
     />
   )
@@ -66,7 +81,6 @@ TextField.defaultProps = {
   placeholder: "",
   required: false,
   type: 'text',
-  value: "",
 };
 
 export default TextField;

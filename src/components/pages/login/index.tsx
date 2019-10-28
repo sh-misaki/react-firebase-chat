@@ -8,6 +8,10 @@ import FormControl from 'components/molecules/FormControl';
 import Form from 'components/organisms/Form';
 
 class Login extends Component {
+  private onSubmit = (values: any) => {
+    console.log('get values', values);
+  }
+
   render() {
     return (
       <MainLayout>
@@ -19,20 +23,17 @@ class Login extends Component {
             email: 'hoge@email.com',
             password: 'hogehoge',
           }}
+          onSubmit={this.onSubmit}
         >
-          <FormControl>
-            <Label
-              text="メールアドレス"
-            >
+          <FormControl name="email">
+            <Label text="メールアドレス">
               <TextField
                 name="email"
               />
             </Label>
           </FormControl>
-          <FormControl>
-            <Label
-              text="パスワード"
-            >
+          <FormControl name="password">
+            <Label text="パスワード">
               <TextField
                 name="password"
                 type="password"
