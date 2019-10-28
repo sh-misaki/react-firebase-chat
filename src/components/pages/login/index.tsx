@@ -4,6 +4,7 @@ import MainLayout from 'components/templates/main';
 import Typography from 'components/atoms/Typography';
 import TextField from 'components/atoms/TextField';
 import Label from 'components/atoms/Label';
+import FormControl from 'components/molecules/FormControl';
 
 class Login extends Component {
   render() {
@@ -12,21 +13,25 @@ class Login extends Component {
         <Typography variant="h1">
           Login
         </Typography>
-        <Label
-          text="名前"
-        >
-          <TextField
-            name="name"
-          />
-        </Label>
-        <Label
-          text="パスワード"
-        >
-          <TextField
-            name="password"
-            type="password"
-          />
-        </Label>
+        <FormControl>
+          <Label
+            text="名前"
+          >
+            <TextField
+              name="name"
+            />
+          </Label>
+        </FormControl>
+        <FormControl>
+          <Label
+            text="パスワード"
+          >
+            <TextField
+              name="password"
+              type="password"
+            />
+          </Label>
+        </FormControl>
       </MainLayout>
     )
   }
