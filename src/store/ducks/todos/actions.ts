@@ -1,25 +1,14 @@
-import types, { IFilter } from "./types";
+import { createStandardAction } from "typesafe-actions";
 
-let nextTodoId = 0;
+import { TodosState } from "./models";
 
-export const addTodo = (text: string) => ({
-  type: types.ADD_TODO,
-  id: nextTodoId++,
-  text
-});
+export const addTodo = createStandardAction("ADD_TODO")<TodosState["todos"]>();
+export const toggleTodo = createStandardAction("TOGGLE_TODO")<TodosState["todos"]>();
 
-export const setVisibilityFilter = (filter: IFilter ) => ({
-  type: types.SET_VISIBILITY_FILTER,
-  filter
-});
-
-export const toggleTodo = (id: string) => ({
-  type: types.TOGGLE_TODO,
-  id
-});
+export const setVisibilityFilter = createStandardAction("SET_VISIBILITY_FILTER")<TodosState["visibilityFilter"]>();
 
 export default {
   addTodo,
   setVisibilityFilter,
-  toggleTodo
-};
+  toggleTodo,
+}
