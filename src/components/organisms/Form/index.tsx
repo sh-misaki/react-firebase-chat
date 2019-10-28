@@ -20,19 +20,11 @@ const Form = withFormik<FormProps, FormProps['initialValues']>({
   validationSchema,
   handleSubmit: (values, { props: { onSubmit } }) => onSubmit(values),
 })((props: FormikProps<FormProps['initialValues']> & React.PropsWithChildren<{}>) => {
-  const { touched, errors, handleSubmit } = props;
+  const { children, handleSubmit } = props;
 
   return (
     <form onSubmit={handleSubmit}>
-      {
-        Children.map(props.children as ReactElement, child => {
-          const { name } = child.props;
-          return React.cloneElement(child, {
-            error: touched[name] && errors[name],
-            errorMessage: errors[name],
-          })
-        })
-      }
+      { children }
       <button type="submit">
         Submit
       </button>

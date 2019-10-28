@@ -1,26 +1,19 @@
 import React, { Children } from 'react';
 import classNames from 'classnames';
-import Typography from 'components/atoms/Typography';
+import { ErrorMessage } from 'formik';
 
 interface Props {
   name: string,
-  error?: boolean,
-  errorMessage?: string,
 }
 
 const FormControl: React.FunctionComponent<Props> = ({
   children,
-  error,
-  errorMessage,
+  name,
 }) => {
   return (
     <div>
       { children }
-      { error && (
-        <Typography>
-          { errorMessage }
-        </Typography>
-      ) }
+      <ErrorMessage name={name} />
     </div>
   )
 };
