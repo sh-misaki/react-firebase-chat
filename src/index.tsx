@@ -1,7 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-import { createStore } from 'redux'
 import 'ress';
 import 'font-awesome/css/font-awesome.min.css'; 
 import * as serviceWorker from 'serviceWorker';
