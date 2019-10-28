@@ -6,7 +6,7 @@ import 'font-awesome/css/font-awesome.min.css';
 import * as serviceWorker from 'serviceWorker';
 
 import 'index.css';
-import App from 'App';
+import App from 'routes';
 import configureStore from "store";
 
 const reduxStore = configureStore();
