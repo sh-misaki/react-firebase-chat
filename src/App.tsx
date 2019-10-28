@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import 'App.css';
-import Chat from 'components/pages/chat';
+import Chat from 'containers/chat';
 
 type Props = {
 

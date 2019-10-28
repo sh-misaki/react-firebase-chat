@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 
-import { toggleTodo } from 'store/ducks/todos/actions';
 import MainLayout from 'components/templates/main';
 import Typography from 'components/atoms/Typography';
 
@@ -22,15 +20,4 @@ class Chat extends Component<Props> {
   }
 }
 
-const mapStateToProps = (state: any) => ({
-  todos: state.todos
-})
-
-const mapDispatchToProps = (dispatch: any) => ({
-  toggleTodo: (id: string) => dispatch(toggleTodo(id))
-})
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(Chat)
+export default Chat;
