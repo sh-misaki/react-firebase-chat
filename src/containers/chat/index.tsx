@@ -1,5 +1,4 @@
-import { Dispatch } from 'react';
-import { connect } from 'react-redux';
+import { connect, MapDispatchToPropsParam } from 'react-redux';
 
 import Chat from 'components/pages/chat';
 import { StateAll } from "store/ducks/types";
@@ -10,10 +9,16 @@ const mapStateToProps = (state: StateAll) => ({
   visibilityFilter: todosSelectors.getVisibilityFilter(state),
 })
 
-const mapDispatchToProps = (dispatch: Dispatch<any>) => ({
-  onTodoClick: todosOperations.toggleTodo,
-  addTodo: todosOperations.addTodo,
-  onFilterClick: todosOperations.setVisibilityFilter,
+const mapDispatchToProps = (dispatch: MapDispatchToPropsParam<any, {}>) => ({
+  onTodoClick: (id: number) => {
+    dispatch(todosOperations.toggleTodo(id))
+  },
+  addTodo: (text: string) => {
+    dispatch(todosOperations.addTodo(text))
+  },
+  onFilterClick: (filter: string) => {
+    dispatch(todosOperations.setVisibilityFilter(filter))
+  },
 })
 
 export default connect(
