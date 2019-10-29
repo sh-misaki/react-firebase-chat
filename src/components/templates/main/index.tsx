@@ -23,8 +23,11 @@ class Chat extends Component<Props> {
           </div>
           <div className={styles.sideMenuList}>
             {
-              sideMenu.menu.map((menu) => (
-                <div className={styles.sideMenuListItem}>
+              sideMenu.menu.map((menu, i) => (
+                <div
+                  key={`menu_${i}`}
+                  className={styles.sideMenuListItem}
+                >
                   <i className={classNames("fa", menu.icon)} />
                   <Typography className={styles.sideMenuListItemText}>
                     { menu.text }
