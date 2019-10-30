@@ -17,8 +17,11 @@ export default class App extends Component {
           <Route path="/chat">
             <Chat />
           </Route>
-          <Route path="/login">
+          <Route path="/signin">
             <Login />
+          </Route>
+          <Route path="/signup">
+            <Login signup />
           </Route>
           <Route path="*">
             No Match

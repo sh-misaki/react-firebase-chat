@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import * as Yup from 'yup';
+import * as firebase from "firebase/app";
 
 import MainLayout from 'components/templates/main';
 import Typography from 'components/atoms/Typography';
@@ -8,12 +9,18 @@ import Label from 'components/atoms/Label';
 import FormControl from 'components/molecules/FormControl';
 import Form from 'components/organisms/Form';
 
-class Login extends Component {
+interface Props {
+  signup: boolean;
+}
+
+class Login extends Component<Props> {
   private onSubmit = (values: any) => {
+    firebase.auth()
     console.log('get values', values);
   }
 
   render() {
+    const { signup } = this.props;
     const validationSchema = Yup.object().shape({
       email: Yup.string()
         .email()
@@ -27,7 +34,7 @@ class Login extends Component {
     return (
       <MainLayout>
         <Typography variant="h1">
-          Login
+          { signup ? "SignUp" : "SignIn" }
         </Typography>
         <Form
           initialValues={{
