@@ -4,12 +4,23 @@ import {
   Switch,
   Route,
 } from "react-router-dom";
+import * as firebase from "firebase/app";
 
 import Chat from "containers/chat";
 
 import Login from "containers/login";
 
 export default class App extends Component {
+  public componentDidMount() {
+    firebase.auth().onAuthStateChanged((user) => {
+      if (user) {
+        console.log(user)
+      } else {
+        console.log(user)
+      }
+    });
+  }
+  
   render() {
     return (
       <Router>

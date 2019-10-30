@@ -13,6 +13,17 @@ import 'index.css';
 import App from 'routes';
 import configureStore from "store";
 
+firebase.initializeApp({
+  apiKey: "AIzaSyDTqCF8lD4ES87laFS3ao24sOOQusnTDFs",
+  authDomain: "art-criticism.firebaseapp.com",
+  databaseURL: "https://art-criticism.firebaseio.com",
+  projectId: "art-criticism",
+  storageBucket: "art-criticism.appspot.com",
+  messagingSenderId: "640687909433",
+  appId: "1:640687909433:web:8a4c658f5b33efffff7be8",
+  measurementId: "G-SFFEHKKMN4"
+});
+
 const reduxStore = configureStore();
 
 ReactDOM.render(
@@ -26,14 +37,3 @@ ReactDOM.render(
 // unregister() to register() below. Note this comes with some pitfalls.
 // Learn more about service workers: https://bit.ly/CRA-PWA
 serviceWorker.unregister();
-
-firebase.initializeApp({
-  apiKey: "AIzaSyDTqCF8lD4ES87laFS3ao24sOOQusnTDFs",
-  authDomain: "art-criticism.firebaseapp.com",
-  databaseURL: "https://art-criticism.firebaseio.com",
-  projectId: "art-criticism",
-  storageBucket: "art-criticism.appspot.com",
-  messagingSenderId: "640687909433",
-  appId: "1:640687909433:web:8a4c658f5b33efffff7be8",
-  measurementId: "G-SFFEHKKMN4"
-});

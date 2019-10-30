@@ -14,13 +14,21 @@ interface Props {
 }
 
 class Login extends Component<Props> {
-  private onSubmit = (values: any) => {
-    firebase.auth()
-    console.log('get values', values);
+  private onSubmit = async (values: {
+    email: string,
+    password: string,
+  }) => {
+    try {
+      const userCredential = await this.props.signup
+        ? firebase.auth().createUserWithEmailAndPassword(values.email, values.password)
+        : firebase.auth().signInWithEmailAndPassword(values.email, values.password)
+      console.log(userCredential)
+    } catch(e) {
+      console.log(e);
+    }
   }
 
   render() {
-    const { signup } = this.props;
     const validationSchema = Yup.object().shape({
       email: Yup.string()
         .email()
@@ -34,7 +42,7 @@ class Login extends Component<Props> {
     return (
       <MainLayout>
         <Typography variant="h1">
-          { signup ? "SignUp" : "SignIn" }
+          { this.props.signup ? "SignUp" : "SignIn" }
         </Typography>
         <Form
           initialValues={{

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import classNames from 'classnames';
+import * as firebase from "firebase/app";
 
 import Typography from 'components/atoms/Typography';
 
@@ -11,6 +12,14 @@ type Props = {
 }
 
 class Chat extends Component<Props> {
+  private async signOut() {
+    try {
+      await firebase.auth().signOut();
+    } catch(e) {
+      console.log(e);
+    }
+  }
+
   render() {
     return (
       <div className={styles.main}>
@@ -36,6 +45,9 @@ class Chat extends Component<Props> {
               ))
             }
           </div>
+          <button onClick={this.signOut}>
+            SignOut
+          </button>
         </div>
         <div className={styles.container}>
           { this.props.children }
