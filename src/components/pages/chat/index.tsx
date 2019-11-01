@@ -4,15 +4,20 @@ import MainLayout from 'components/templates/main';
 import Typography from 'components/atoms/Typography';
 import { TodosState } from 'store/ducks/todos/models';
 
-type Props = {
+interface IStateProps {
   todos: TodosState['todos'];
   visibilityFilter: string;
+}
+
+interface IDispatchProps {
   onTodoClick(id: number): void;
   addTodo(text: string): void;
   onFilterClick(filter: string): void;
 }
 
-const Chat: FunctionComponent<Props> = () => {
+type IProps = IStateProps & IDispatchProps;
+
+const Chat: FunctionComponent<IProps> = () => {
   return (
     <MainLayout>
       <Typography variant="h1">
