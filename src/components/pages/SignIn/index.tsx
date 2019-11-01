@@ -14,7 +14,7 @@ import { Domains } from "types";
 
 interface Props {
   signup: boolean;
-  user: Domains.User | null;
+  user: Domains.IUser | null;
 }
 
 const Login: React.FunctionComponent<Props> = ({

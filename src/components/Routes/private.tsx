@@ -8,7 +8,7 @@ import { Domains } from "types";
 
 interface Props {
   path: string;
-  user: Domains.User | null;
+  user: Domains.IUser | null;
 }
 
 const PrivateRoute: React.FunctionComponent<Props> = ({

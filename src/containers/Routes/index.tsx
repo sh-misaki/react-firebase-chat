@@ -11,7 +11,7 @@ const mapStateToProps = (state: StateAll) => ({
 })
 
 const mapDispatchToProps = (dispatch: MapDispatchToPropsParam<any, {}>) => ({
-  signin: (user: Domains.User) => {
+  signin: (user: Domains.IUser) => {
     dispatch(authOperations.signin(user))
   },
   signout: () => {

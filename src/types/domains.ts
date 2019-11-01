@@ -1,5 +1,14 @@
-import { IUser } from "store/ducks/auth/models";
+import * as firebase from "firebase/app";
 
 export namespace Domains {
-   export type User = IUser;
+  export type IUser = Pick<firebase.User,
+    | "displayName"
+    | "email"
+    | "emailVerified"
+    | "isAnonymous"
+    | "phoneNumber"
+    | "photoURL"
+    | "refreshToken"
+    | "uid"
+  >
 }

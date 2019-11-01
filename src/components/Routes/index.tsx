@@ -14,8 +14,8 @@ import Top from "containers/Top";
 import { Domains } from "types";
 
 interface IProps {
-  user: Domains.User | null;
-  signin(user: Domains.User): void;
+  user: Domains.IUser | null;
+  signin(user: Domains.IUser): void;
   signout(): void;
 }
 
