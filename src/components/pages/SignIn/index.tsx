@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
+import React, { useEffect } from 'react';
 import * as Yup from 'yup';
 import * as firebase from "firebase/app";
-import { useHistory } from 'react-router';
+import { useHistory, useLocation } from "react-router-dom";
 
 import MainLayout from 'components/templates/main';
 import Typography from 'components/atoms/Typography';
@@ -10,14 +10,25 @@ import Label from 'components/atoms/Label';
 import FormControl from 'components/molecules/FormControl';
 import Form from 'components/organisms/Form';
 
+import { IUser } from "store/ducks/auth/models";
+
 interface Props {
   signup: boolean;
+  user: IUser | null;
 }
 
 const Login: React.FunctionComponent<Props> = ({
   signup,
+  user,
 }) => {
   const history = useHistory();
+  const location = useLocation();
+
+  useEffect(() => {
+    if (user === null) return;
+    const { from } = location.state || { from: { pathname: "/" } };
+    history.replace(from);
+  }, [user, history, location.state])
 
   const onSubmit = async (values: {
     email: string,
@@ -27,7 +38,6 @@ const Login: React.FunctionComponent<Props> = ({
       await signup
         ? firebase.auth().createUserWithEmailAndPassword(values.email, values.password)
         : firebase.auth().signInWithEmailAndPassword(values.email, values.password);
-      history.push("/");
     } catch(e) {
       console.log(e);
     }
