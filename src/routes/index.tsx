@@ -6,8 +6,9 @@ import {
 } from "react-router-dom";
 import * as firebase from "firebase/app";
 
-import Chat from "containers/chat";
+import PrivateRoute from "./private";
 
+import Chat from "containers/chat";
 import Login from "containers/login";
 
 export default class App extends Component {
@@ -25,15 +26,22 @@ export default class App extends Component {
     return (
       <Router>
         <Switch>
-          <Route path="/chat">
-            <Chat />
-          </Route>
           <Route path="/signin">
             <Login />
           </Route>
           <Route path="/signup">
             <Login signup />
           </Route>
+          <PrivateRoute path="/">
+            <Switch>
+              <Route exact path="/">
+                hoge
+              </Route>
+              <Route exact path="/chat">
+                <Chat />
+              </Route>
+            </Switch>
+          </PrivateRoute>
           <Route path="*">
             No Match
           </Route>
