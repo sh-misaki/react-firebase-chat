@@ -1,6 +1,6 @@
 import React, { FunctionComponent } from 'react';
 
-import MainLayout from 'components/templates/main';
+import MainLayout from 'components/layouts/main';
 import Typography from 'components/atoms/Typography';
 
 type Props = {

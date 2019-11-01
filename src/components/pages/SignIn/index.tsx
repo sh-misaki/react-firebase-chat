@@ -3,7 +3,7 @@ import * as Yup from 'yup';
 import * as firebase from "firebase/app";
 import { useHistory, useLocation } from "react-router-dom";
 
-import MainLayout from 'components/templates/main';
+import MainLayout from 'components/layouts/main';
 import Typography from 'components/atoms/Typography';
 import TextField from 'components/atoms/TextField';
 import Label from 'components/atoms/Label';
