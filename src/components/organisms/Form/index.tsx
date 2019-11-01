@@ -9,6 +9,7 @@ interface IProps {
   onValidate?(isValid: boolean): void;
   validationSchema: Schema<{}>;
   isInitialValid?: boolean;
+  className?: string;
 }
 
 setLocale(locale);
@@ -19,6 +20,7 @@ const Form: FunctionComponent<IProps> = ({
   onValidate = () => {},
   validationSchema,
   isInitialValid = false,
+  className = "",
   children,
 }) => {
   return (
@@ -31,7 +33,10 @@ const Form: FunctionComponent<IProps> = ({
       }}
     >
       {props => (
-        <form onSubmit={props.handleSubmit}>
+        <form
+          onSubmit={props.handleSubmit}
+          className={className}
+        >
           { children }
           <CheckValid
             {...{onValidate}}

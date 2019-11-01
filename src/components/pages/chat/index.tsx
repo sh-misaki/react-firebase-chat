@@ -103,6 +103,7 @@ const Chat: FunctionComponent<IProps> = ({
             validationSchema={validationSchema}
             onSubmit={onSubmit}
             onValidate={onValidate}
+            className={styles.input}
           >
             <TextField
               name="post"
