@@ -13,11 +13,16 @@ import SignIn from "containers/SignIn";
 import Top from "containers/Top";
 import { Domains } from "types";
 
-interface IProps {
+interface IStateProps {
   user: Domains.IUser | null;
+}
+
+interface IDispatchProps {
   signin(user: Domains.IUser): void;
   signout(): void;
 }
+
+type IProps = IStateProps & IDispatchProps;
 
 interface IStates {
   authFetched: boolean;

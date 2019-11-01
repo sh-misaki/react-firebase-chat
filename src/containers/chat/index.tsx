@@ -1,10 +1,10 @@
 import { connect, MapDispatchToPropsParam } from 'react-redux';
 
 import Chat from 'components/pages/Chat';
-import { StateAll } from "store/ducks/types";
+import { IStateAll } from "store/ducks/types";
 import { todosOperations, todosSelectors } from "store/ducks/todos";
 
-const mapStateToProps = (state: StateAll) => ({
+const mapStateToProps = (state: IStateAll) => ({
   todos: todosSelectors.getVisibleTodos(state),
   visibilityFilter: todosSelectors.getVisibilityFilter(state),
 })

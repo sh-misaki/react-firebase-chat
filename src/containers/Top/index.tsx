@@ -1,9 +1,9 @@
 import { connect, MapDispatchToPropsParam } from 'react-redux';
 
 import Top from 'components/pages/Top';
-import { StateAll } from "store/ducks/types";
+import { IStateAll } from "store/ducks/types";
 
-const mapStateToProps = (_state: StateAll) => ({
+const mapStateToProps = (_state: IStateAll) => ({
   
 })
 

@@ -6,12 +6,12 @@ import {
 } from "react-router-dom";
 import { Domains } from "types";
 
-interface Props {
+interface IProps {
   path: string;
   user: Domains.IUser | null;
 }
 
-const PrivateRoute: React.FunctionComponent<Props> = ({
+const PrivateRoute: React.FunctionComponent<IProps> = ({
   user,
   children,
   ...rest

@@ -1,12 +1,12 @@
 import { connect, MapDispatchToPropsParam } from 'react-redux';
 
-import { StateAll } from "store/ducks/types";
+import { IStateAll } from "store/ducks/types";
 import { authOperations, authSelectors } from "store/ducks/auth";
 import { Domains } from "types";
 
 import Routes from "components/Routes";
 
-const mapStateToProps = (state: StateAll) => ({
+const mapStateToProps = (state: IStateAll) => ({
   user: authSelectors.getUser(state),
 })
 

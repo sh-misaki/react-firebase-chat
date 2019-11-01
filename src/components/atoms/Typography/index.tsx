@@ -3,7 +3,7 @@ import classNames from 'classnames';
 
 import styles from './index.module.scss';
 
-interface OwnProps {
+interface IOwnProps {
   variant?: 'h1'
     | 'h2'
     | 'h3'
@@ -21,9 +21,9 @@ interface OwnProps {
     | 'inherit'
 }
 
-type Props = OwnProps & React.HTMLAttributes<HTMLDivElement>;
+type IProps = IOwnProps & React.HTMLAttributes<HTMLDivElement>;
 
-const Typography: FunctionComponent<Props> = ({
+const Typography: FunctionComponent<IProps> = ({
   children,
   className,
   variant = "body1",

@@ -12,12 +12,17 @@ import Form from 'components/organisms/Form';
 
 import { Domains } from "types";
 
-interface Props {
-  signup: boolean;
+interface IStateProps {
   user: Domains.IUser | null;
 }
 
-const Login: React.FunctionComponent<Props> = ({
+interface IDispatchProps {
+  signup: boolean;
+}
+
+type IProps = IStateProps & IDispatchProps;
+
+const Login: React.FunctionComponent<IProps> = ({
   signup,
   user,
 }) => {
