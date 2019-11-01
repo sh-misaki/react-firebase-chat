@@ -5,24 +5,61 @@ import {
   Route,
 } from "react-router-dom";
 import * as firebase from "firebase/app";
+import { connect, MapDispatchToPropsParam } from 'react-redux';
+
+import { StateAll } from "store/ducks/types";
+import { authOperations, authSelectors } from "store/ducks/auth";
 
 import PrivateRoute from "./private";
 
 import Chat from "containers/chat";
 import Login from "containers/login";
+import { IUser } from "store/ducks/auth/models";
 
-export default class App extends Component {
+interface IProps {
+  user: IUser | null;
+  signin(user: IUser): void;
+  signout(): void;
+}
+
+interface IStates {
+  authFetched: boolean;
+}
+
+class Routes extends Component<IProps, IStates> {
+  constructor(props: IProps) {
+    super(props);
+    
+    this.state = { authFetched: false };
+  }
+
   public componentDidMount() {
-    firebase.auth().onAuthStateChanged((user) => {
-      if (user) {
-        console.log(user)
+    const { signin, signout } = this.props;
+    firebase.auth().onAuthStateChanged((firebaseUser) => {
+      if (firebaseUser) {
+        const user = {
+          displayName: firebaseUser.displayName,
+          email: firebaseUser.email,
+          emailVerified: firebaseUser.emailVerified,
+          isAnonymous: firebaseUser.isAnonymous,
+          phoneNumber: firebaseUser.phoneNumber,
+          photoURL: firebaseUser.photoURL,
+          refreshToken: firebaseUser.refreshToken,
+          uid: firebaseUser.uid,
+        };
+        signin(user);
       } else {
-        console.log(user)
+        signout();
       }
+
+      this.setState({
+        authFetched: true,  
+      })
     });
   }
-  
+
   render() {
+    if (!this.state.authFetched) return <div />;
     return (
       <Router>
         <Switch>
@@ -50,3 +87,21 @@ export default class App extends Component {
     );
   }
 }
+
+const mapStateToProps = (state: StateAll) => ({
+  user: authSelectors.getUser(state),
+})
+
+const mapDispatchToProps = (dispatch: MapDispatchToPropsParam<any, {}>) => ({
+  signin: (user: IUser) => {
+    dispatch(authOperations.signin(user))
+  },
+  signout: () => {
+    dispatch(authOperations.signout())
+  },
+})
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Routes);
