@@ -4,14 +4,13 @@ import { Provider } from 'react-redux';
 import 'ress';
 import 'font-awesome/css/font-awesome.min.css'; 
 import * as serviceWorker from 'serviceWorker';
-
 import * as firebase from "firebase/app";
 import "firebase/auth";
 import "firebase/firestore";
 
 import 'index.css';
 import App from 'routes';
-import configureStore from "store";
+import reduxStore from "store";
 
 firebase.initializeApp({
   apiKey: "AIzaSyDTqCF8lD4ES87laFS3ao24sOOQusnTDFs",
@@ -23,8 +22,6 @@ firebase.initializeApp({
   appId: "1:640687909433:web:8a4c658f5b33efffff7be8",
   measurementId: "G-SFFEHKKMN4"
 });
-
-const reduxStore = configureStore();
 
 ReactDOM.render(
   <Provider store={reduxStore}>

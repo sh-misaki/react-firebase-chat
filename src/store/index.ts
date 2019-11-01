@@ -7,9 +7,9 @@ const middleware = process.env.NODE_ENV !== "production" ?
   composeWithDevTools(applyMiddleware(thunkMiddleware)) :
   applyMiddleware(thunkMiddleware);
 
-export default function configureStore() {
-  return createStore(
-    combineReducers(reducers),
-    middleware
-  );
-}
+const store = createStore(
+  combineReducers(reducers),
+  middleware
+);
+
+export default store;
