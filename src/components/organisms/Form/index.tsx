@@ -1,5 +1,5 @@
-import React, { FunctionComponent, useEffect } from 'react';
-import { Formik, useFormikContext, } from 'formik';
+import React, { FunctionComponent, useEffect, useRef } from 'react';
+import { Formik, FormikProps, } from 'formik';
 import { Schema, setLocale } from 'yup';
 import locale from './locale.json';
 
@@ -33,15 +33,13 @@ const Form: FunctionComponent<IProps> = ({
       }}
     >
       {props => (
-        <form
-          onSubmit={props.handleSubmit}
+        <FormWithFormik
+          onValidate={onValidate}
           className={className}
+          {...props}
         >
           { children }
-          <CheckValid
-            {...{onValidate}}
-          />
-        </form>
+        </FormWithFormik>
       )}
     </Formik>
   );
@@ -49,10 +47,41 @@ const Form: FunctionComponent<IProps> = ({
 
 export default Form;
 
-const CheckValid: FunctionComponent<Pick<IProps, "onValidate">> = ({
+const FormWithFormik: FunctionComponent<
+  Pick<IProps, "onValidate" | "className"> &
+  FormikProps<{[name: string]: string}>
+> = ({
   onValidate = () => {},
+  className,
+  children,
+  isValid,
+  handleSubmit,
+  resetForm,
+  isSubmitting,
 }) => {
-  const { isValid } = useFormikContext();
   useEffect(() => onValidate(isValid), [isValid, onValidate]);
-  return null;
+
+  const prevIsSubmitting = usePrevious(isSubmitting);
+  useEffect(() => {
+    if (prevIsSubmitting === true && isSubmitting === false) {
+      resetForm();
+    }
+  }, [isSubmitting, prevIsSubmitting, resetForm]);
+
+  return (
+    <form
+      onSubmit={handleSubmit}
+      className={className}
+    >
+      { children }
+    </form>
+  );
 };
+
+function usePrevious<T>(value: T) {
+  const ref = useRef<T>();
+  useEffect(() => {
+    ref.current = value;
+  }, [value]);
+  return ref.current;
+}
