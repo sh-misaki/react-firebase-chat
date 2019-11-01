@@ -1,14 +1,7 @@
 import React from 'react';
 import classNames from 'classnames';
 
-interface IProps {
-  className?: string,
-  disabled?: boolean,
-  error?: boolean,
-  focused?: boolean,
-  required?: boolean,
-  text: string,
-}
+import { IProps } from "./types";
 
 const Label: React.FunctionComponent<IProps> = ({
   className = "",
