@@ -1,8 +1,13 @@
-import React, { FunctionComponent } from 'react';
+import React, { FunctionComponent, useState } from 'react';
 import classNames from 'classnames';
+import * as Yup from 'yup';
+import { useField, useFormik } from 'formik';
 
 import MainLayout from 'components/layouts/main';
 import Typography from 'components/atoms/Typography';
+import TextField from 'components/atoms/TextField';
+import Form from 'components/organisms/Form';
+
 import { IOpenChatsState } from 'store/ducks/openChats/models';
 
 import styles from './index.module.scss';
@@ -24,9 +29,20 @@ const Chat: FunctionComponent<IProps> = ({
   title,
   members,
 }) => {
-  console.log(conversations);
-  console.log(title)
-  console.log(members)
+  const onSubmit = (values: { post: string }) => {
+    console.log(values);
+  }
+
+  const [canSubmit, setCanSubmit] = useState(false);
+  const onValidate = (isValid: boolean) => {
+    setCanSubmit(isValid);
+  }
+
+  const validationSchema = Yup.object().shape({
+    post: Yup.string()
+      .required()
+  })
+
   return (
     <MainLayout>
       <div className={styles.chat}>
@@ -78,9 +94,18 @@ const Chat: FunctionComponent<IProps> = ({
               ))
             }
           </div>
-          <div className={styles.input}>
-            Write Something
-          </div>
+          <Form
+            initialValues={{ post: "", }}
+            validationSchema={validationSchema}
+            onSubmit={onSubmit}
+            onValidate={onValidate}
+          >
+            <TextField
+              name="post"
+              placeholder="Write Something"
+            />
+            <input type="submit" value="Submit" disabled={!canSubmit} />
+          </Form>
         </div>
       </div>
     </MainLayout>

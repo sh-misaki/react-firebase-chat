@@ -1,33 +1,53 @@
-import React from 'react';
-import { withFormik, FormikProps, } from 'formik';
+import React, { FunctionComponent, useEffect } from 'react';
+import { Formik, useFormik, useFormikContext, } from 'formik';
 import { Schema, setLocale } from 'yup';
 import locale from './locale.json';
 
 interface IProps {
   initialValues: { [name: string]: string };
   onSubmit(values: any): void;
+  onValidate?(isValid: boolean): void;
   validationSchema: Schema<{}>;
   isInitialValid?: boolean;
 }
 
 setLocale(locale);
 
-const Form = withFormik<IProps, IProps['initialValues']>({
-  mapPropsToValues: (props: IProps) => props.initialValues,
-  validationSchema: (props: IProps) => props.validationSchema,
-  handleSubmit: (values, { props: { onSubmit } }) => onSubmit(values),
-  isInitialValid: (props: IProps) => props.isInitialValid !== undefined ? props.isInitialValid : false,
-})((props: FormikProps<IProps['initialValues']> & React.PropsWithChildren<{}>) => {
-  const { children, handleSubmit, isValid } = props;
-
+const Form: FunctionComponent<IProps> = ({
+  initialValues,
+  onSubmit,
+  onValidate = () => {},
+  validationSchema,
+  isInitialValid = false,
+  children,
+}) => {
   return (
-    <form onSubmit={handleSubmit}>
-      { children }
-      <button type="submit" disabled={!isValid}>
-        Submit
-      </button>
-    </form>
+    <Formik
+      {...{
+        initialValues,
+        onSubmit,
+        isInitialValid,
+        validationSchema,
+      }}
+    >
+      {props => (
+        <form onSubmit={props.handleSubmit}>
+          { children }
+          <CheckValid
+            {...{onValidate}}
+          />
+        </form>
+      )}
+    </Formik>
   );
-});
+};
 
 export default Form;
+
+const CheckValid: FunctionComponent<Pick<IProps, "onValidate">> = ({
+  onValidate = () => {},
+}) => {
+  const { isValid } = useFormikContext();
+  useEffect(() => onValidate(isValid), [isValid]);
+  return null;
+};
