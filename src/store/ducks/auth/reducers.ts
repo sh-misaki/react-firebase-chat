@@ -1,4 +1,3 @@
-import { combineReducers } from "redux";
 import { getType } from "typesafe-actions";
 import { PayloadAction } from "typesafe-actions/dist";
 
