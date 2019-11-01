@@ -1,0 +1,25 @@
+import { connect, MapDispatchToPropsParam } from 'react-redux';
+
+import { StateAll } from "store/ducks/types";
+import { authOperations, authSelectors } from "store/ducks/auth";
+import { IUser } from "store/ducks/auth/models";
+
+import Routes from "components/Routes";
+
+const mapStateToProps = (state: StateAll) => ({
+  user: authSelectors.getUser(state),
+})
+
+const mapDispatchToProps = (dispatch: MapDispatchToPropsParam<any, {}>) => ({
+  signin: (user: IUser) => {
+    dispatch(authOperations.signin(user))
+  },
+  signout: () => {
+    dispatch(authOperations.signout())
+  },
+})
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Routes);
