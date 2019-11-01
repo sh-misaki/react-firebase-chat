@@ -10,6 +10,7 @@ import PrivateRoute from "./private";
 
 import Chat from "containers/Chat";
 import SignIn from "containers/SignIn";
+import Top from "containers/Top";
 import { IUser } from "store/ducks/auth/models";
 
 interface IProps {
@@ -81,7 +82,7 @@ class Routes extends Component<IProps, IStates> {
           >
             <Switch>
               <Route exact path="/">
-                TOP
+                <Top />
               </Route>
               <Route exact path="/chat">
                 <Chat />
