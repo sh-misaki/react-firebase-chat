@@ -9,7 +9,7 @@ import "firebase/auth";
 import "firebase/firestore";
 
 import 'index.css';
-import App from 'routes';
+import App from 'containers/Routes';
 import reduxStore from "store";
 
 firebase.initializeApp({
