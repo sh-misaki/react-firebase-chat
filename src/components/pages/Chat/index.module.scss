@@ -27,8 +27,9 @@
 
 .conversations {
   flex: 1;
-  flex-direction: column-reverse;
   display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
 }
 
 .conversationsItem {

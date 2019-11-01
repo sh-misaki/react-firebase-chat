@@ -2,16 +2,19 @@ import { connect, MapDispatchToPropsParam } from 'react-redux';
 
 import Chat from 'components/pages/Chat';
 import { IStateAll } from "store/ducks/types";
-import { openChatsSelectors } from "store/ducks/openChats";
+import { openChatsSelectors, openChatsOperations } from "store/ducks/openChats";
 
 const mapStateToProps = (state: IStateAll) => ({
-  conversations: openChatsSelectors.getStates(state).conversations,
-  title: openChatsSelectors.getStates(state).title,
-  members: openChatsSelectors.getStates(state).members,
+  ...openChatsSelectors.getStates(state),
 })
 
 const mapDispatchToProps = (dispatch: MapDispatchToPropsParam<any, {}>) => ({
-
+  postConversation: (messgae: string) => {
+    dispatch(openChatsOperations.postConversation({
+      text: messgae,
+      userId: "1",
+    }))
+  },
 })
 
 export default connect(

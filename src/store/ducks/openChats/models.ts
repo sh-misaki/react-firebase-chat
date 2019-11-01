@@ -20,10 +20,12 @@ interface IChatMember {
   status: "on" | "off";
 }
 
+export type IConversation = Domains.IConversation;
+
 export interface IOpenChatsState {
   title: string;
   members: IChatMember[];
-  conversations: Domains.IConversation[];
+  conversations: IConversation[];
 }
 
 export const initOpenChats: IOpenChatsState = {

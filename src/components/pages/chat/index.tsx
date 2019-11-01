@@ -18,7 +18,7 @@ interface IStateProps {
 }
 
 interface IDispatchProps {
-  
+  postConversation(message: string): void;
 }
 
 type IProps = IStateProps & IDispatchProps;
@@ -27,9 +27,14 @@ const Chat: FunctionComponent<IProps> = ({
   conversations,
   title,
   members,
+  postConversation,
 }) => {
+  console.log(conversations,
+    title,
+    members)
   const onSubmit = (values: { post: string }) => {
     console.log(values);
+    postConversation(values.post);
   }
 
   const [canSubmit, setCanSubmit] = useState(false);
