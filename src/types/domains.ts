@@ -11,4 +11,12 @@ export namespace Domains {
     | "refreshToken"
     | "uid"
   >
+
+  export interface IConversation {
+    text: string;
+    userId: string;
+    userName: string;
+    userIcon: string | null;
+    ts: string;
+  }
 }

@@ -86,6 +86,7 @@ const Login: React.FunctionComponent<IProps> = ({
             />
           </Label>
         </FormControl>
+        <input type="submit" value="Submit" />
       </Form>
     </MainLayout>
   )
