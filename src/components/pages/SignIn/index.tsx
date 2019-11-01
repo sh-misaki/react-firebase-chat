@@ -19,10 +19,9 @@ class Login extends Component<Props> {
     password: string,
   }) => {
     try {
-      const userCredential = await this.props.signup
+      await this.props.signup
         ? firebase.auth().createUserWithEmailAndPassword(values.email, values.password)
-        : firebase.auth().signInWithEmailAndPassword(values.email, values.password)
-      console.log(userCredential)
+        : firebase.auth().signInWithEmailAndPassword(values.email, values.password);
     } catch(e) {
       console.log(e);
     }

@@ -1,6 +1,6 @@
 import { connect, MapDispatchToPropsParam } from 'react-redux';
 
-import Login from 'components/pages/login';
+import Login from 'components/pages/SignIn';
 import { StateAll } from "store/ducks/types";
 
 interface OwnProps {

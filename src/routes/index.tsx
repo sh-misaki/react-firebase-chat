@@ -12,8 +12,8 @@ import { authOperations, authSelectors } from "store/ducks/auth";
 
 import PrivateRoute from "./private";
 
-import Chat from "containers/chat";
-import Login from "containers/login";
+import Chat from "containers/Chat";
+import SignIn from "containers/SignIn";
 import { IUser } from "store/ducks/auth/models";
 
 interface IProps {
@@ -64,10 +64,10 @@ class Routes extends Component<IProps, IStates> {
       <Router>
         <Switch>
           <Route path="/signin">
-            <Login />
+            <SignIn />
           </Route>
           <Route path="/signup">
-            <Login signup />
+            <SignIn signup />
           </Route>
           <PrivateRoute path="/">
             <Switch>

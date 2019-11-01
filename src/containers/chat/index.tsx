@@ -1,6 +1,6 @@
 import { connect, MapDispatchToPropsParam } from 'react-redux';
 
-import Chat from 'components/pages/chat';
+import Chat from 'components/pages/Chat';
 import { StateAll } from "store/ducks/types";
 import { todosOperations, todosSelectors } from "store/ducks/todos";
 
