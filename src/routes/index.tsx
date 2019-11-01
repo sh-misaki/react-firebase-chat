@@ -69,7 +69,10 @@ class Routes extends Component<IProps, IStates> {
           <Route path="/signup">
             <SignIn signup />
           </Route>
-          <PrivateRoute path="/">
+          <PrivateRoute
+            path="/"
+            user={this.props.user}
+          >
             <Switch>
               <Route exact path="/">
                 hoge

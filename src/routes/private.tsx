@@ -4,15 +4,21 @@ import {
   Redirect,
   RouteProps,
 } from "react-router-dom";
+import { IUser } from "store/ducks/auth/models";
 
-const PrivateRoute: React.FunctionComponent<RouteProps> = ({
+interface Props {
+  user: IUser | null;
+}
+
+const PrivateRoute: React.FunctionComponent<Props & RouteProps> = ({
   children,
+  user,
   ...rest
 }) => {
   return (
     <Route {...rest}>
       {
-        false
+        user !== null
         ? children
         : (
           <Redirect
