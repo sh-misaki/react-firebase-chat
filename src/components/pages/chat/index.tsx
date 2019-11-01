@@ -1,7 +1,6 @@
 import React, { FunctionComponent, useState } from 'react';
 import classNames from 'classnames';
 import * as Yup from 'yup';
-import { useField, useFormik } from 'formik';
 
 import MainLayout from 'components/layouts/main';
 import Typography from 'components/atoms/Typography';
