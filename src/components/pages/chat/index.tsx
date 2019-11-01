@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { FunctionComponent } from 'react';
 
 import MainLayout from 'components/templates/main';
 import Typography from 'components/atoms/Typography';
@@ -12,16 +12,14 @@ type Props = {
   onFilterClick(filter: string): void;
 }
 
-class Chat extends Component<Props> {
-  render() {
-    return (
-      <MainLayout>
-        <Typography variant="h1">
-          Chat
-        </Typography>
-      </MainLayout>
-    )
-  }
+const Chat: FunctionComponent<Props> = () => {
+  return (
+    <MainLayout>
+      <Typography variant="h1">
+        Chat
+      </Typography>
+    </MainLayout>
+  )
 }
 
 export default Chat;

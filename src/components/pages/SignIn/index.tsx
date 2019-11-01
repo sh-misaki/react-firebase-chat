@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import * as Yup from 'yup';
 import * as firebase from "firebase/app";
+import { useHistory } from 'react-router';
 
 import MainLayout from 'components/templates/main';
 import Typography from 'components/atoms/Typography';
@@ -13,63 +14,66 @@ interface Props {
   signup: boolean;
 }
 
-class Login extends Component<Props> {
-  private onSubmit = async (values: {
+const Login: React.FunctionComponent<Props> = ({
+  signup,
+}) => {
+  const history = useHistory();
+
+  const onSubmit = async (values: {
     email: string,
     password: string,
   }) => {
     try {
-      await this.props.signup
+      await signup
         ? firebase.auth().createUserWithEmailAndPassword(values.email, values.password)
         : firebase.auth().signInWithEmailAndPassword(values.email, values.password);
+      history.push("/");
     } catch(e) {
       console.log(e);
     }
   }
 
-  render() {
-    const validationSchema = Yup.object().shape({
-      email: Yup.string()
-        .email()
-        .required()
-        .label("メールアドレス"),
-      password: Yup.string()
-        .min(8)
-        .label("パスワード"),
-    })
+  const validationSchema = Yup.object().shape({
+    email: Yup.string()
+      .email()
+      .required()
+      .label("メールアドレス"),
+    password: Yup.string()
+      .min(8)
+      .label("パスワード"),
+  })
 
-    return (
-      <MainLayout>
-        <Typography variant="h1">
-          { this.props.signup ? "SignUp" : "SignIn" }
-        </Typography>
-        <Form
-          initialValues={{
-            email: 'hoge@email.com',
-            password: 'hogehoge',
-          }}
-          validationSchema={validationSchema}
-          onSubmit={this.onSubmit}
-        >
-          <FormControl name="email">
-            <Label text="メールアドレス">
-              <TextField
-                name="email"
-              />
-            </Label>
-          </FormControl>
-          <FormControl name="password">
-            <Label text="パスワード">
-              <TextField
-                name="password"
-                type="password"
-              />
-            </Label>
-          </FormControl>
-        </Form>
-      </MainLayout>
-    )
-  }
+  return (
+    <MainLayout>
+      <Typography variant="h1">
+        { signup ? "SignUp" : "SignIn" }
+      </Typography>
+      <Form
+        initialValues={{
+          email: 'hoge@email.com',
+          password: 'hogehoge',
+        }}
+        validationSchema={validationSchema}
+        onSubmit={onSubmit}
+      >
+        <FormControl name="email">
+          <Label text="メールアドレス">
+            <TextField
+              name="email"
+            />
+          </Label>
+        </FormControl>
+        <FormControl name="password">
+          <Label text="パスワード">
+            <TextField
+              name="password"
+              type="password"
+            />
+          </Label>
+        </FormControl>
+      </Form>
+    </MainLayout>
+  )
 }
 
 export default Login;
