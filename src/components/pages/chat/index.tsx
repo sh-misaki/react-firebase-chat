@@ -29,9 +29,6 @@ const Chat: FunctionComponent<IProps> = ({
   members,
   postConversation,
 }) => {
-  console.log(conversations,
-    title,
-    members)
   const onSubmit = (values: { post: string }) => {
     console.log(values);
     postConversation(values.post);
@@ -71,8 +68,11 @@ const Chat: FunctionComponent<IProps> = ({
           </Typography>
           <div className={styles.members}>
             {
-              members.map((member) => (
-                <div className={styles.membersItem}>
+              members.map((member, i) => (
+                <div
+                  className={styles.membersItem}
+                  key={`member_${i}`}
+                >
                   <i className={classNames("fa", "fa-user", styles.conversationsItemIcon)} />
                 </div>
               ))
