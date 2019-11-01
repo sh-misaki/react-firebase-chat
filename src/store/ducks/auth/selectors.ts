@@ -1,9 +1,9 @@
 import { createSelector, Selector } from "reselect"
 
-import { StateAll } from "../types"
+import { IStateAll } from "../types"
 import { IAuthState } from "./models"
 
-export const rootSelector: Selector<StateAll, IAuthState> = (state: StateAll) => state.auth;
+export const rootSelector: Selector<IStateAll, IAuthState> = (state: IStateAll) => state.auth;
 
 const getUser = createSelector(
   rootSelector,

@@ -1,13 +1,13 @@
 import { connect, MapDispatchToPropsParam } from 'react-redux';
 
 import Login from 'components/pages/SignIn';
-import { StateAll } from "store/ducks/types";
+import { IStateAll } from "store/ducks/types";
 
-interface OwnProps {
+interface IOwnProps {
   signup?: boolean;
 }
 
-const mapStateToProps = (state: StateAll, ownProps: OwnProps) => ({
+const mapStateToProps = (state: IStateAll, ownProps: IOwnProps) => ({
   signup: ownProps.signup != null ? ownProps.signup : false,
 })
 

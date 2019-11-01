@@ -3,7 +3,7 @@ import { withFormik, FormikProps, } from 'formik';
 import { Schema, setLocale } from 'yup';
 import locale from './locale.json';
 
-interface FormProps {
+interface IProps {
   initialValues: { [name: string]: string };
   onSubmit(values: any): void;
   validationSchema: Schema<{}>
@@ -11,11 +11,11 @@ interface FormProps {
 
 setLocale(locale);
 
-const Form = withFormik<FormProps, FormProps['initialValues']>({
-  mapPropsToValues: (props: FormProps) => props.initialValues,
-  validationSchema: (props: FormProps) => props.validationSchema,
+const Form = withFormik<IProps, IProps['initialValues']>({
+  mapPropsToValues: (props: IProps) => props.initialValues,
+  validationSchema: (props: IProps) => props.validationSchema,
   handleSubmit: (values, { props: { onSubmit } }) => onSubmit(values),
-})((props: FormikProps<FormProps['initialValues']> & React.PropsWithChildren<{}>) => {
+})((props: FormikProps<IProps['initialValues']> & React.PropsWithChildren<{}>) => {
   const { children, handleSubmit } = props;
 
   return (

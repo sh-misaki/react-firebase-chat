@@ -10,14 +10,19 @@ import Label from 'components/atoms/Label';
 import FormControl from 'components/molecules/FormControl';
 import Form from 'components/organisms/Form';
 
-import { IUser } from "store/ducks/auth/models";
+import { Domains } from "types";
 
-interface Props {
-  signup: boolean;
-  user: IUser | null;
+interface IStateProps {
+  user: Domains.IUser | null;
 }
 
-const Login: React.FunctionComponent<Props> = ({
+interface IDispatchProps {
+  signup: boolean;
+}
+
+type IProps = IStateProps & IDispatchProps;
+
+const Login: React.FunctionComponent<IProps> = ({
   signup,
   user,
 }) => {

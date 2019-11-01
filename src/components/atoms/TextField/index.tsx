@@ -2,7 +2,7 @@ import React from 'react';
 import classNames from 'classnames';
 import { useField } from 'formik';
  
-interface Props {
+interface IProps {
   autoComplete?: 'on' | 'off' | 'default',
   className?: string,
   disabled?: boolean,
@@ -17,7 +17,7 @@ interface Props {
   type?: 'text' | 'password' | 'number',
 }
 
-const TextField: React.FunctionComponent<Props> = ({
+const TextField: React.FunctionComponent<IProps> = ({
   autoComplete = "default",
   className = "",
   disabled = false,

@@ -1,11 +1,11 @@
 import React from 'react';
 import { ErrorMessage } from 'formik';
 
-interface Props {
+interface IProps {
   name: string,
 }
 
-const FormControl: React.FunctionComponent<Props> = ({
+const FormControl: React.FunctionComponent<IProps> = ({
   children,
   name,
 }) => {

@@ -1,18 +1,9 @@
-import * as firebase from "firebase/app";
+import { Domains } from "types";
 
-export type IUser = Pick<firebase.User,
-  | "displayName"
-  | "email"
-  | "emailVerified"
-  | "isAnonymous"
-  | "phoneNumber"
-  | "photoURL"
-  | "refreshToken"
-  | "uid"
->
+export type IUser = Domains.IUser;
 
 export interface IAuthState {
-  auth: IUser | null;
+  auth: Domains.IUser | null;
 }
 
 export const initAuth: IAuthState = {

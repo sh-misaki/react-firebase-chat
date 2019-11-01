@@ -1,7 +1,7 @@
 import React from 'react';
 import classNames from 'classnames';
 
-interface Props {
+interface IProps {
   className?: string,
   disabled?: boolean,
   error?: boolean,
@@ -10,7 +10,7 @@ interface Props {
   text: string,
 }
 
-const Label: React.FunctionComponent<Props> = ({
+const Label: React.FunctionComponent<IProps> = ({
   className = "",
   children,
   disabled = false,

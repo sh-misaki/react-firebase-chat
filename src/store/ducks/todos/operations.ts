@@ -1,13 +1,13 @@
 import { Dispatch } from "redux";
 
 import { todosSelectors } from ".";
-import { StateAll } from "../types";
+import { IStateAll } from "../types";
 import actions from "./actions";
 import { Todo } from "./models";
 
 let nextTodoId = 0
 
-const addTodo = (text: string) => (dispatch: Dispatch, getState: () => StateAll) => {
+const addTodo = (text: string) => (dispatch: Dispatch, getState: () => IStateAll) => {
   const todos = todosSelectors.getTodos(getState())
 
   const id = nextTodoId
@@ -25,7 +25,7 @@ const addTodo = (text: string) => (dispatch: Dispatch, getState: () => StateAll)
   )
 }
 
-const toggleTodo = (id: number) => (dispatch: Dispatch, getState: () => StateAll) => {
+const toggleTodo = (id: number) => (dispatch: Dispatch, getState: () => IStateAll) => {
   const todos = todosSelectors.getTodos(getState())
 
   const toggledTodos = todos.map((todo: Todo) => {

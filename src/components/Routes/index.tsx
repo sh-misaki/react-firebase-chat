@@ -11,13 +11,18 @@ import PrivateRoute from "./private";
 import Chat from "containers/Chat";
 import SignIn from "containers/SignIn";
 import Top from "containers/Top";
-import { IUser } from "store/ducks/auth/models";
+import { Domains } from "types";
 
-interface IProps {
-  user: IUser | null;
-  signin(user: IUser): void;
+interface IStateProps {
+  user: Domains.IUser | null;
+}
+
+interface IDispatchProps {
+  signin(user: Domains.IUser): void;
   signout(): void;
 }
+
+type IProps = IStateProps & IDispatchProps;
 
 interface IStates {
   authFetched: boolean;

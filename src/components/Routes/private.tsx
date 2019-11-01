@@ -4,14 +4,14 @@ import {
   useHistory,
   useLocation,
 } from "react-router-dom";
-import { IUser } from "store/ducks/auth/models";
+import { Domains } from "types";
 
-interface Props {
+interface IProps {
   path: string;
-  user: IUser | null;
+  user: Domains.IUser | null;
 }
 
-const PrivateRoute: React.FunctionComponent<Props> = ({
+const PrivateRoute: React.FunctionComponent<IProps> = ({
   user,
   children,
   ...rest
